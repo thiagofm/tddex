@@ -1,4 +1,4 @@
-defmodule File.Watcher do
+defmodule Tddex.File.Watcher do
   use GenServer
 
   def start_link(args) do

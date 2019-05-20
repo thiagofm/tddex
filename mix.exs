@@ -24,7 +24,9 @@ defmodule Tddex.MixProject do
     # On Linux, FreeBSD and OpenBSD you need to install inotify-tools.
     # On Macos 10.14, you need run `open /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg` to compile `mac_listener`.
     [
-      {:file_system, "~> 0.2"}
+      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
+      {:file_system, "~> 0.2"},
+      {:temp, "~> 0.4"} #TODO: maybe only test?
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
     ]
