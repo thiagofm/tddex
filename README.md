@@ -10,7 +10,7 @@ This project aims to not be just yet another update files + run tests "TDD" libr
 
 ## Roadmap
 
-- [ ] License?
+- [x] License?
 - [ ] Be able to detect file changes correctly
 - [ ] Run tests ?
 - [ ] Create basic command line tool which is always running and let people filter etc
