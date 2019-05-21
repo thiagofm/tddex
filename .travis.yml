@@ -1,9 +1,13 @@
 language: elixir
-elixir:
-  - 1.8
-otp_release:
-  - 21.0
+matrix:
+  include:
+    - os: linux
+      sudo: required
+      otp_release: 21.0
+      elixir: 1.8.0
 sudo: false
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install inotify-tools; fi
 before_script:
   - mix deps.get
 script:
