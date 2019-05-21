@@ -3,6 +3,19 @@ defmodule Tddex.File.WatcherTest do
 
   alias Tddex.File.Watcher
 
+  # This behaves funny in the CI, gotta make it bigger, maybe extract this
+  def timeout_multiplier do
+    if Application.get_env(:tddex, :ci) do
+      20
+    else
+      1
+    end
+  end
+
+  def timeout(ms) do
+    ms * timeout_multiplier()
+  end
+
   setup do
     {:ok, dir_path} = Temp.mkdir()
 
@@ -20,9 +33,9 @@ defmodule Tddex.File.WatcherTest do
   test "file being added and getting updates", %{dir_path: dir_path} do
     {:ok, %{watcher_pid: pid}} = Watcher.init(dirs: [dir_path])
 
-    :timer.sleep(200)
+    :timer.sleep(timeout(200))
     File.write(Path.join(dir_path, "1984"), "Winston Smith")
 
-    assert_receive {:file_event, ^pid, {_path, _events}}, 1000
+    assert_receive {:file_event, ^pid, {_path, _events}}, timeout(1000)
   end
 end
