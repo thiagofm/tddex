@@ -26,7 +26,8 @@ defmodule Tddex.MixProject do
     [
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
       {:file_system, "~> 0.2"},
-      {:temp, "~> 0.4"} #TODO: maybe only test?
+      # TODO: maybe only test?
+      {:temp, "~> 0.4"}
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
     ]

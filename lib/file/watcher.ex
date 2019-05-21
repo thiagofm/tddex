@@ -1,4 +1,8 @@
 defmodule Tddex.File.Watcher do
+  @moduledoc """
+  Watches out for File system events and acts based on it
+  """
+
   use GenServer
 
   def start_link(args) do
@@ -11,13 +15,11 @@ defmodule Tddex.File.Watcher do
     {:ok, %{watcher_pid: watcher_pid}}
   end
 
-  def handle_info({:file_event, watcher_pid, {path, events}}, %{watcher_pid: watcher_pid}=state) do
-    IO.inspect events
-
+  def handle_info({:file_event, watcher_pid, {path, events}}, %{watcher_pid: watcher_pid} = state) do
     {:noreply, state}
   end
 
-  def handle_info({:file_event, watcher_pid, :stop}, %{watcher_pid: watcher_pid}=state) do
+  def handle_info({:file_event, watcher_pid, :stop}, %{watcher_pid: watcher_pid} = state) do
     # YOUR OWN LOGIC WHEN MONITOR STOP
     {:noreply, state}
   end
