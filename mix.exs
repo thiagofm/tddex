@@ -7,8 +7,17 @@ defmodule Tddex.MixProject do
       version: "0.1.0",
       elixir: "~> 1.8",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
-    ]
+      deps: deps(),
+      package: package(),
+      description: "tddex strives to make testing frictionless and ergonomic as possible, an improved Guard(ruby).",
+   ]
+  end
+
+  def package do
+    %{
+      licenses: ["MIT"],
+      links: %{github: "https://github.com/thiagofm/tddex"}
+    }
   end
 
   # Run "mix help compile.app" to learn about applications.
@@ -26,6 +35,7 @@ defmodule Tddex.MixProject do
     [
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
       {:file_system, "~> 0.2"},
+      {:ex_doc, ">= 0.0.0", only: :dev},
       # TODO: maybe only test?
       {:temp, "~> 0.4"}
       # {:dep_from_hexpm, "~> 0.3.0"},
