@@ -9,8 +9,9 @@ defmodule Tddex.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
-      description: "tddex strives to make testing frictionless and ergonomic as possible, an improved Guard(ruby).",
-   ]
+      description:
+        "tddex strives to make testing frictionless and ergonomic as possible, an improved Guard(ruby)."
+    ]
   end
 
   def package do
