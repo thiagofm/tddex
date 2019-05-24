@@ -10,20 +10,20 @@ defmodule Tddex.File.Watcher do
   end
 
   def init(args) do
-    {:ok, watcher_pid} = FileSystem.start_link(args)
+    IO.inspect "Starting File Watcher" #TODO: verbose mode?
+    IO.inspect args
+    {:ok, watcher_pid} = FileSystem.start_link(args ++ [latency: 0]) #TODO: support other OSes
     FileSystem.subscribe(watcher_pid)
     {:ok, %{watcher_pid: watcher_pid}}
   end
 
-  def handle_info(
-        {:file_event, watcher_pid, {_path, _events}},
-        %{watcher_pid: watcher_pid} = state
-      ) do
+  def handle_info({:file_event, _pid, {path, _events}}, state) do
+    IO.inspect "File changed:" <> path
     {:noreply, state}
   end
 
   def handle_info({:file_event, watcher_pid, :stop}, %{watcher_pid: watcher_pid} = state) do
-    # YOUR OWN LOGIC WHEN MONITOR STOP
+    # YOUR OWN LOGIC WHEN mONITOR STOP
     {:noreply, state}
   end
 end
