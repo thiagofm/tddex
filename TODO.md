@@ -4,7 +4,7 @@
 - [x] Be able to detect file changes correctly
 - [x] Pipeline mix test credo format (could be better though)
 - [x] Register package on hexpm
-- [ ] Runner
+- [x] Runner
 - [ ] Long running mix task
 - [ ] Filtering
 - [ ] Make Runner compatible to other OSes
