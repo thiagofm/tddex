@@ -1,5 +1,7 @@
 defmodule Tddex.File.WatcherTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
+
+  import Mox
 
   alias Tddex.File.Watcher
 
@@ -26,9 +28,12 @@ defmodule Tddex.File.WatcherTest do
     %{dir_path: dir_path}
   end
 
+  setup :verify_on_exit!
+
   test "init/1", %{dir_path: dir_path} do
     assert {:ok, %{watcher_pid: pid}} = Watcher.init(dirs: [dir_path])
   end
+
 
   test "file being added and getting updates", %{dir_path: dir_path} do
     {:ok, %{watcher_pid: pid}} = Watcher.init(dirs: [dir_path])
@@ -36,6 +41,6 @@ defmodule Tddex.File.WatcherTest do
     :timer.sleep(timeout(200))
     File.write(Path.join(dir_path, "1984"), "Winston Smith")
 
-    assert_receive {:file_event, ^pid, {_path, _events}}, timeout(1000)
+    assert_receive {:file_event, ^pid, {_path, _events}}, timeout(10_000)
   end
 end
