@@ -1,8 +1,6 @@
 defmodule Tddex.File.WatcherTest do
   use ExUnit.Case, async: true
 
-  import Mox
-
   alias Tddex.File.Watcher
 
   # This behaves funny in the CI, gotta make it bigger, maybe extract this
@@ -28,12 +26,9 @@ defmodule Tddex.File.WatcherTest do
     %{dir_path: dir_path}
   end
 
-  setup :verify_on_exit!
-
   test "init/1", %{dir_path: dir_path} do
     assert {:ok, %{watcher_pid: pid}} = Watcher.init(dirs: [dir_path])
   end
-
 
   test "file being added and getting updates", %{dir_path: dir_path} do
     {:ok, %{watcher_pid: pid}} = Watcher.init(dirs: [dir_path])
