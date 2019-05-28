@@ -4,12 +4,14 @@ defmodule Tddex.File.Watcher do
   """
 
   use GenServer
+
   def start_link(args) do
     GenServer.start_link(__MODULE__, args)
   end
 
   def init(args) do
-    {:ok, watcher_pid} = FileSystem.start_link(args ++ [latency: 0]) #TODO: support other OSes
+    # TODO: support other OSes
+    {:ok, watcher_pid} = FileSystem.start_link(args ++ [latency: 0])
     FileSystem.subscribe(watcher_pid)
     {:ok, %{watcher_pid: watcher_pid}}
   end

@@ -3,7 +3,7 @@ defmodule Tddex.File.WatcherTest do
 
   alias Tddex.File.Watcher
 
- # This behaves funny in the CI, gotta make it bigger, maybe extract this
+  # This behaves funny in the CI, gotta make it bigger, maybe extract this
   def timeout_multiplier do
     if Application.get_env(:tddex, :ci) do
       20

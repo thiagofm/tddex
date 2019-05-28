@@ -1,6 +1,11 @@
 defmodule Tddex.Handler do
+  @moduledoc """
+  Given a file path, knows whether it should run all tests, or just one, or perhaps none.
+  """
+
   def file_event(file_path, runner \\ Application.get_env(:tddex, :runner)) do
-    IO.inspect "Test changed: #{file_path}" #TODO: remove this when we're done with a workable version
+    # TODO: remove this when we're done with a workable version
+    IO.inspect("Test changed: #{file_path}")
 
     # TODO:
     # Hm... Modes.

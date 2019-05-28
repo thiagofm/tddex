@@ -6,7 +6,7 @@ defmodule Tddex.HandlerTest do
   setup :verify_on_exit!
 
   test "file_event/1" do
-   {:ok, _fd, file_path} = Temp.open "test-file"
+    {:ok, _fd, file_path} = Temp.open("test-file")
 
     Tddex.RunnerMock
     |> expect(:run, fn file_paths ->
