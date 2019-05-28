@@ -3,6 +3,8 @@ defmodule Tddex.Runner do
   Runs files based on which ones should be run
   """
 
+  @callback run(any()) :: {any(), non_neg_integer()}
+
   def run(paths) do
     mix_test(paths)
   end
