@@ -10,7 +10,7 @@ defmodule Tddex.HandlerTest do
 
     Tddex.RunnerMock
     |> expect(:run, fn file_paths ->
-      assert file_paths == [file_path]
+      assert file_paths == ['.']
     end)
 
     assert Handler.file_event(file_path)
