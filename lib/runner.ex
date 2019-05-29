@@ -11,6 +11,7 @@ defmodule Tddex.Runner do
 
   defp mix_test(paths) do
     paths_string = Enum.join(paths, " ")
-    System.cmd("sh", ["-c", "mix test " <> paths_string], into: IO.stream(:stdio, :line))
+    #TODO: mock system?
+    System.cmd("mix", ["test", "--color", paths_string], into: IO.stream(:stdio, :line))
   end
 end

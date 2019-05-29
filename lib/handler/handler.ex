@@ -10,6 +10,17 @@ defmodule Tddex.Handler do
     # 2. Try to find a test for the file saved.
     # 3. Filter by a file or directory.
 
-    runner.run(['.'])
+    unless ignored_path?(file_path) do
+      runner.run(['.'])
+    end
+  end
+
+  def ignored_path?(path) do
+    path
+    |> Path.relative_to_cwd
+    |> Path.split
+    |> Enum.any?(fn path_fragment ->
+      Regex.match?(~r/^(_.*|\..+)/, path_fragment)
+    end)
   end
 end
