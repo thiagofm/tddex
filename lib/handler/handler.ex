@@ -4,7 +4,6 @@ defmodule Tddex.Handler do
   """
 
   def file_event(file_path, runner \\ Application.get_env(:tddex, :runner)) do
-    # TODO:
     # Hm... Modes.
     # 1. Run all test files when a file is saved can be a start.
     # 2. Try to find a test for the file saved.

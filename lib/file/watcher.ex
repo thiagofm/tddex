@@ -10,7 +10,6 @@ defmodule Tddex.File.Watcher do
   end
 
   def init(args) do
-    # TODO: support other OSes
     {:ok, watcher_pid} = FileSystem.start_link(args ++ [latency: 0])
     FileSystem.subscribe(watcher_pid)
     {:ok, %{watcher_pid: watcher_pid}}
