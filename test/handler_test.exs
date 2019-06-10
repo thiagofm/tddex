@@ -17,14 +17,14 @@ defmodule Tddex.HandlerTest do
   end
 
   test "file_event/1 when changed file is in a hidden directory" do
-    {:ok, cwd} = File.cwd
+    {:ok, cwd} = File.cwd()
     path = cwd <> "/_build/test/lib/tddex/.mix/.mix_test_failures"
 
     Handler.file_event(path)
   end
 
   test "ignored_path?/1" do
-    {:ok, cwd} = File.cwd
+    {:ok, cwd} = File.cwd()
     path = cwd <> "/_build/test/lib/tddex/.mix/.mix_test_failures"
 
     assert Handler.ignored_path?(path)

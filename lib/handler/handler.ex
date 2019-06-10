@@ -16,8 +16,8 @@ defmodule Tddex.Handler do
 
   def ignored_path?(path) do
     path
-    |> Path.relative_to_cwd
-    |> Path.split
+    |> Path.relative_to_cwd()
+    |> Path.split()
     |> Enum.any?(fn path_fragment ->
       Regex.match?(~r/^(_.*|\..+)/, path_fragment)
     end)

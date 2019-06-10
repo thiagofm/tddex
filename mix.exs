@@ -35,7 +35,6 @@ defmodule Tddex.MixProject do
     # On Macos 10.14, you need run `open /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg` to compile `mac_listener`.
     [
       {:file_system, "~> 0.2"},
-
       {:ex_doc, ">= 0.0.0", only: :dev},
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
       {:temp, "~> 0.4", only: :test},
