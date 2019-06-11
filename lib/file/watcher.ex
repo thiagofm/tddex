@@ -11,7 +11,11 @@ defmodule Tddex.File.Watcher do
 
   def init(args) do
     {:ok, watcher_pid} = FileSystem.start_link(args ++ [latency: 0])
+
     FileSystem.subscribe(watcher_pid)
+
+    IO.puts "Tddex started and watching over the sub directories at #{File.cwd!}"
+
     {:ok, %{watcher_pid: watcher_pid}}
   end
 
