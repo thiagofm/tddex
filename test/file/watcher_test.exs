@@ -3,6 +3,8 @@ defmodule Tddex.File.WatcherTest do
 
   alias Tddex.File.Watcher
 
+  import ExUnit.CaptureIO
+
   # This behaves funny in the CI, gotta make it bigger, maybe extract this
   def timeout_multiplier do
     if Application.get_env(:tddex, :ci) do
@@ -27,15 +29,18 @@ defmodule Tddex.File.WatcherTest do
   end
 
   test "init/1", %{dir_path: dir_path} do
-    assert {:ok, %{watcher_pid: pid}} = Watcher.init(dirs: [dir_path])
+    assert capture_io(fn ->
+      {:ok, %{watcher_pid: _pid}} = Watcher.init(dirs: [dir_path])
+    end) |> String.match?(~r/Tddex started and watching over the sub directories at/)
   end
 
   test "file being added and getting updates", %{dir_path: dir_path} do
-    {:ok, %{watcher_pid: pid}} = Watcher.init(dirs: [dir_path])
+    capture_io(fn ->
+      {:ok, %{watcher_pid: pid}} = Watcher.init(dirs: [dir_path])
+      :timer.sleep(timeout(200))
+      File.write(Path.join(dir_path, "1984"), "Winston Smith")
 
-    :timer.sleep(timeout(200))
-    File.write(Path.join(dir_path, "1984"), "Winston Smith")
-
-    assert_receive {:file_event, ^pid, {_path, _events}}, timeout(10_000)
+      assert_receive {:file_event, ^pid, {_path, _events}}, timeout(10_000)
+    end)
   end
 end
